@@ -5,7 +5,8 @@ import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink.{TLMessages, TLPermissions}
 import huancun.{HuanCunModule, MSHRRequest, MetaData}
-import utility.{MemReqSource, XSPerfAccumulate}
+import utility.MemReqSource
+import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
 
 class ProbeHelper(entries: Int = 5, enqDelay: Int = 1)(implicit p: Parameters)
   extends HuanCunModule with HasClientInfo

@@ -3,7 +3,8 @@ package huancun
 import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
-import utility.{FastArbiter, XSPerfAccumulate}
+import utility.FastArbiter
+import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
 
 class RequestBuffer(flow: Boolean = true, entries: Int = 16)(implicit p: Parameters) extends HuanCunModule {
 

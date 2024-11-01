@@ -7,6 +7,8 @@ trait HuanCunModule extends ScalaModule {
 
   def utilityModule: ScalaModule
 
-  override def moduleDeps = super.moduleDeps ++ Seq(rocketModule, utilityModule)
+  def xsutilsModule: ScalaModule
+
+  override def moduleDeps = super.moduleDeps ++ Seq(rocketModule, utilityModule, xsutilsModule)
 
 }

@@ -4,7 +4,8 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
 import huancun.noninclusive.DirResult
-import utility.{MemReqSource, XSPerfAccumulate, XSPerfHistogram}
+import utility.MemReqSource
+import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
 
 class TopDownMonitor()(implicit p: Parameters) extends HuanCunModule {
   val banks = 1 << bankBits
