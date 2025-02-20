@@ -25,13 +25,13 @@ import chisel3.util._
 import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.tile.MaxHartIdBits
 import freechips.rocketchip.tilelink._
-import freechips.rocketchip.tilelink.TLMessages._
 import freechips.rocketchip.util.{BundleField, BundleFieldBase, UIntToOH1}
 import org.chipsalliance.diplomacy.bundlebridge.BundleBridgeNexusNode
 import huancun.prefetch._
 import utils.ResetGen
 import utility.{Pipeline, FastArbiter}
-import huancun.noninclusive.MSHR
+import xs.utils.common.PrefetchRecv
+
 
 trait HasHuanCunParameters {
   val p: Parameters
