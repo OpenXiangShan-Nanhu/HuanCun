@@ -5,6 +5,7 @@ import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
 import huancun._
+import xs.utils.common._
 
 class SinkC(implicit p: Parameters) extends BaseSinkC {
   /*

@@ -27,6 +27,7 @@ import freechips.rocketchip.tilelink.{TLBufferParams, TLChannelBeatBytes, TLEdge
 import freechips.rocketchip.util.{BundleField, BundleFieldBase, BundleKeyBase, ControlKey}
 import huancun.prefetch.{PrefetchParameters, TPmetaParameters}
 import utility.{MemReqSource, ReqSourceKey}
+import xs.utils.common._
 
 case object HCCacheParamsKey extends Field[HCCacheParameters](HCCacheParameters())
 
@@ -46,31 +47,32 @@ case class CacheParameters
   val needResolveAlias = aliasBitsOpt.nonEmpty
 }
 
-case object PrefetchKey extends ControlKey[Bool](name = "needHint")
-
-case class PrefetchField() extends BundleField[Bool](PrefetchKey, Output(Bool()), _ := false.B)
-
-case object AliasKey extends ControlKey[UInt]("alias")
-
-case class AliasField(width: Int) extends BundleField[UInt](AliasKey, Output(UInt(width.W)), _ := 0.U(width.W))
-
-// try to keep data in cache is true
-// now it only works for non-inclusive cache (ignored in inclusive cache)
-case object PreferCacheKey extends ControlKey[Bool](name = "preferCache")
-
-case class PreferCacheField() extends BundleField[Bool](PreferCacheKey, Output(Bool()), _ := false.B)
-
-// indicate whether this block is granted from L3 or not (only used when grantData to L2)
-// now it only works for non-inclusive cache (ignored in inclusive cache)
-case object IsHitKey extends ControlKey[Bool](name = "isHitInL3")
-
-case class IsHitField() extends BundleField[Bool](IsHitKey, Output(Bool()), _ := true.B)
-
-// indicate whether this block is dirty or not (only used in handle Release/ReleaseData)
-// now it only works for non-inclusive cache (ignored in inclusive cache)
-case object DirtyKey extends ControlKey[Bool](name = "blockisdirty")
-
-case class DirtyField() extends BundleField[Bool](DirtyKey, Output(Bool()), _ := true.B)
+// move to xs utils
+//case object PrefetchKey extends ControlKey[Bool](name = "needHint")
+//
+//case class PrefetchField() extends BundleField[Bool](PrefetchKey, Output(Bool()), _ := false.B)
+//
+//case object AliasKey extends ControlKey[UInt]("alias")
+//
+//case class AliasField(width: Int) extends BundleField[UInt](AliasKey, Output(UInt(width.W)), _ := 0.U(width.W))
+//
+//// try to keep data in cache is true
+//// now it only works for non-inclusive cache (ignored in inclusive cache)
+//case object PreferCacheKey extends ControlKey[Bool](name = "preferCache")
+//
+//case class PreferCacheField() extends BundleField[Bool](PreferCacheKey, Output(Bool()), _ := false.B)
+//
+//// indicate whether this block is granted from L3 or not (only used when grantData to L2)
+//// now it only works for non-inclusive cache (ignored in inclusive cache)
+//case object IsHitKey extends ControlKey[Bool](name = "isHitInL3")
+//
+//case class IsHitField() extends BundleField[Bool](IsHitKey, Output(Bool()), _ := true.B)
+//
+//// indicate whether this block is dirty or not (only used in handle Release/ReleaseData)
+//// now it only works for non-inclusive cache (ignored in inclusive cache)
+//case object DirtyKey extends ControlKey[Bool](name = "blockisdirty")
+//
+//case class DirtyField() extends BundleField[Bool](DirtyKey, Output(Bool()), _ := true.B)
 
 case class CacheCtrl
 (

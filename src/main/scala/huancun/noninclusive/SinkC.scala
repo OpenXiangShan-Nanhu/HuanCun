@@ -6,6 +6,7 @@ import org.chipsalliance.cde.config.Parameters
 import freechips.rocketchip.tilelink.{TLBundleC, TLMessages}
 import huancun._
 import utility.MemReqSource
+import xs.utils.common._
 
 class SinkC(implicit p: Parameters) extends BaseSinkC {
 
