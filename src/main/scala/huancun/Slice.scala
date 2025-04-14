@@ -26,7 +26,8 @@ import freechips.rocketchip.tilelink._
 import freechips.rocketchip.util.leftOR
 import huancun.noninclusive.{MSHR, ProbeHelper, SliceCtrl, DirResult}
 import huancun.prefetch._
-import utility._
+import xs.utils.cacheParam._
+import xs.utils.{Pipeline, FastArbiter, LatchFastArbiter}
 
 class Slice()(implicit p: Parameters) extends HuanCunModule {
   val io = IO(new Bundle {

@@ -4,12 +4,13 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink.TLMessages
-import huancun.MetaData._
 import huancun._
 import huancun.debug.{DirectoryLogger, TypeId}
 import huancun.utils._
 import utility.{GTimer, ParallelMax, ParallelPriorityMux}
 import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
+import xs.utils.cacheParam.{MetaData}
+import xs.utils.cacheParam.HCCacheParamsKey
 
 trait HasClientInfo { this: HasHuanCunParameters =>
   // assume all clients have same params
@@ -172,7 +173,7 @@ class Directory(implicit p: Parameters)
   )
 
   def client_invalid_way_fn(metaVec: Seq[Vec[ClientDirEntry]], repl: UInt): (Bool, UInt) = {
-    val invalid_vec = metaVec.map(states => Cat(states.map(_.state === INVALID)).andR)
+    val invalid_vec = metaVec.map(states => Cat(states.map(_.state === MetaData.INVALID)).andR)
     val has_invalid_way = Cat(invalid_vec).orR
     val way = ParallelPriorityMux(invalid_vec.zipWithIndex.map(x => x._1 -> x._2.U(clientWayBits.W)))
     (has_invalid_way, way)
@@ -284,7 +285,7 @@ class Directory(implicit p: Parameters)
   resp.bits.clients.states.zip(clientResp.bits.dir).foreach{
     case (s, dir) =>
       s.state := dir.state
-      s.hit := clientResp.bits.hit && dir.state =/= INVALID
+      s.hit := clientResp.bits.hit && dir.state =/= MetaData.INVALID
       s.alias.foreach(_ := dir.alias.get)
   }
   resp.bits.clients.tag_match := clientResp.bits.hit
@@ -325,10 +326,10 @@ class Directory(implicit p: Parameters)
   XSPerfAccumulate("selfdir_C_hit", RegNext(req_r.replacerInfo.channel(2) && resp.valid) && resp.bits.self.hit)
 
   XSPerfAccumulate("selfdir_dirty", RegNext(resp.valid) && resp.bits.self.dirty)
-  XSPerfAccumulate("selfdir_TIP", RegNext(resp.valid) && resp.bits.self.state === TIP)
-  XSPerfAccumulate("selfdir_BRANCH", RegNext(resp.valid) && resp.bits.self.state === BRANCH)
-  XSPerfAccumulate("selfdir_TRUNK", RegNext(resp.valid) && resp.bits.self.state === TRUNK)
-  XSPerfAccumulate("selfdir_INVALID", RegNext(resp.valid) && resp.bits.self.state === INVALID)
+  XSPerfAccumulate("selfdir_TIP", RegNext(resp.valid) && resp.bits.self.state === MetaData.TIP)
+  XSPerfAccumulate("selfdir_BRANCH", RegNext(resp.valid) && resp.bits.self.state === MetaData.BRANCH)
+  XSPerfAccumulate("selfdir_TRUNK", RegNext(resp.valid) && resp.bits.self.state === MetaData.TRUNK)
+  XSPerfAccumulate("selfdir_INVALID", RegNext(resp.valid) && resp.bits.self.state === MetaData.INVALID)
   //val perfinfo = IO(new Bundle(){
   //  val perfEvents = Output(new PerfEventsBundle(numPCntHcDir))
   //})
@@ -341,10 +342,10 @@ class Directory(implicit p: Parameters)
     ("selfdir_C_req     ", req_r.replacerInfo.channel(2) && resp.valid                      ),
     ("selfdir_C_hit     ", RegNext(req_r.replacerInfo.channel(2) && resp.valid) && resp.bits.self.hit),
     ("selfdir_dirty     ", RegNext(resp.valid) && resp.bits.self.dirty                               ),
-    ("selfdir_TIP       ", RegNext(resp.valid) && resp.bits.self.state === TIP                       ),
-    ("selfdir_BRANCH    ", RegNext(resp.valid) && resp.bits.self.state === BRANCH                    ),
-    ("selfdir_TRUNK     ", RegNext(resp.valid) && resp.bits.self.state === TRUNK                     ),
-    ("selfdir_INVALID   ", RegNext(resp.valid) && resp.bits.self.state === INVALID                   ),
+    ("selfdir_TIP       ", RegNext(resp.valid) && resp.bits.self.state === MetaData.TIP              ),
+    ("selfdir_BRANCH    ", RegNext(resp.valid) && resp.bits.self.state === MetaData.BRANCH           ),
+    ("selfdir_TRUNK     ", RegNext(resp.valid) && resp.bits.self.state === MetaData.TRUNK            ),
+    ("selfdir_INVALID   ", RegNext(resp.valid) && resp.bits.self.state === MetaData.INVALID          ),
   )
 
   for (((perf_out,(perf_name,perf)),i) <- perfinfo.zip(perfEvents).zipWithIndex) {

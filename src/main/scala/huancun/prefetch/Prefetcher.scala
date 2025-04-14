@@ -4,8 +4,16 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
-import huancun._
-import utility._
+import xs.utils.tl.MemReqSource
+import xs.utils.{Pipeline, ValidIODelay, RegNextN}
+import xs.utils.cacheParam.{HCCacheParamsKey}
+import xs.utils.cacheParam.prefetch._
+import huancun.HasHuanCunParameters
+trait HasHCPrefetchParameters extends HasHuanCunParameters {
+  val inflightEntries = prefetchOpt.get.inflightEntries
+}
+abstract class PrefetchBundle(implicit val p: Parameters) extends Bundle with HasHCPrefetchParameters
+abstract class PrefetchModule(implicit val p: Parameters) extends Module with HasHCPrefetchParameters
 
 class PrefetchReq(implicit p: Parameters) extends PrefetchBundle {
   val tag = UInt(fullTagBits.W)

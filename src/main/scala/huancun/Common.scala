@@ -23,7 +23,7 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
 import freechips.rocketchip.util.{BundleMap, UIntToOH1}
-import utility.MemReqSource
+import xs.utils.tl.MemReqSource
 
 abstract class InnerTask(implicit p: Parameters) extends HuanCunBundle {
   val sourceId = UInt(sourceIdBits.W)

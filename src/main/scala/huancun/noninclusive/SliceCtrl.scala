@@ -3,8 +3,11 @@ package huancun.noninclusive
 import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
+
 import huancun._
-import utility.{MemReqSource, RegNextN}
+import xs.utils.tl.{MemReqSource}
+import huancun.HuanCunModule
+import xs.utils.RegNextN
 
 class SliceCtrl()(implicit p: Parameters) extends HuanCunModule {
 

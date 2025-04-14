@@ -3,8 +3,7 @@ package huancun
 import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
-import huancun.prefetch._
-
+import huancun.prefetch.{PrefetchTrain, PrefetchResp}
 abstract class MSHRTasks[T_DIR_W <: BaseDirWrite, T_TAG_W <: BaseTagWrite](implicit p: Parameters)
     extends HuanCunBundle {
   // inner

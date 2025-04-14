@@ -4,19 +4,8 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
-import huancun._
 import utility.{MemReqSource, Pipeline}
-
-case class PrefetchReceiverParams(n: Int = 32) extends PrefetchParameters {
-  override val hasPrefetchBit: Boolean = true
-  override val inflightEntries: Int = n
-}
-
-case class L3PrefetchReceiverParams(n: Int = 32) extends PrefetchParameters {
-  override val hasPrefetchBit: Boolean = true
-  override val inflightEntries: Int = n
-}
-
+import xs.utils.cacheParam.prefetch._
 class PrefetchReceiver()(implicit p: Parameters) extends PrefetchModule {
   val io = IO(new PrefetchIO())
   // just ignore train reqs

@@ -8,6 +8,7 @@ import freechips.rocketchip.interrupts.{IntSourceNode, IntSourcePortParameters, 
 import freechips.rocketchip.regmapper.{RegField, RegFieldDesc, RegFieldGroup, RegWriteFn}
 import freechips.rocketchip.tilelink.{TLAdapterNode, TLRegisterNode}
 import freechips.rocketchip.util.{SimpleRegIO, UIntToOH1}
+import xs.utils.cacheParam.HCCacheParamsKey
 
 class CtrlUnit(val node: TLAdapterNode)(implicit p: Parameters)
   extends LazyModule with HasHuanCunParameters

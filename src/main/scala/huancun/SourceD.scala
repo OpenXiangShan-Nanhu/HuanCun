@@ -25,7 +25,8 @@ import chisel3.util._
 import freechips.rocketchip.tilelink._
 import freechips.rocketchip.tilelink.TLMessages.{AcquireBlock, AcquirePerm, ReleaseAck}
 import utility._
-import xs.utils.common._
+import xs.utils.cacheParam.common._
+import xs.utils.cacheParam.common.{DirtyKey, IsHitKey}
 
 
 class SourceD(implicit p: Parameters) extends HuanCunModule {

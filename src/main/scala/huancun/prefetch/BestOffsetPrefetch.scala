@@ -1,33 +1,12 @@
 package huancun.prefetch
 
-import huancun.utils.SRAMTemplate
 import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
+import huancun.utils.SRAMTemplate
 import huancun.HasHuanCunParameters
-import utility.MemReqSource
-
-case class BOPParameters(
-  rrTableEntries: Int = 256,
-  rrTagBits:      Int = 12,
-  scoreBits:      Int = 5,
-  roundMax:       Int = 50,
-  badScore:       Int = 1,
-  offsetList: Seq[Int] = Seq(
-    -32, -30, -27, -25, -24, -20, -18, -16, -15,
-    -12, -10,  -9,  -8,  -6,  -5,  -4,  -3,  -2,  -1,
-      1,   2,   3,   4,   5,   6,   8,   9,  10,
-     12,  15,  16,  18,  20,  24,  25,  27,  30//,
-    /*32,  36,
-     40,  45,  48,  50,  54,  60,  64,  72,  75,  80,
-     81,  90,  96, 100, 108, 120, 125, 128, 135, 144,
-    150, 160, 162, 180, 192, 200, 216, 225, 240, 243,
-    250, 256*/
-  ))
-    extends PrefetchParameters {
-  override val hasPrefetchBit:  Boolean = true
-  override val inflightEntries: Int = 16
-}
+import xs.utils.tl.MemReqSource
+import xs.utils.cacheParam.prefetch.{BOPParameters}
 
 trait HasBOPParams extends HasHuanCunParameters {
   val bopParams = prefetchOpt.get.asInstanceOf[BOPParameters]
@@ -59,7 +38,6 @@ trait HasBOPParams extends HasHuanCunParameters {
     }
   }
 }
-
 abstract class BOPBundle(implicit val p: Parameters) extends Bundle with HasBOPParams
 abstract class BOPModule(implicit val p: Parameters) extends Module with HasBOPParams
 

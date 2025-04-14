@@ -22,7 +22,25 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import huancun.{TPmetaReq, TPmetaResp}
 import utility._
+import xs.utils.cacheParam.prefetch._
+import huancun.HasHuanCunParameters
 
+trait HasTPmetaParameters extends HasHuanCunParameters {
+  val metaEntries = tpmetaOpt.get.metaEntries
+  val metaAssoc = tpmetaOpt.get.metaAssoc
+  val nrSet = metaEntries / metaAssoc
+  val SetBits = log2Ceil(nrSet)
+  val busBytes = tpmetaOpt.get.busBytes
+  val busBits = busBytes * 8
+  // val nrTPBeat = cacheParams.blockBytes / busBytes
+  val nrTPBeat = 1
+  val tpbeatBits = if (nrTPBeat == 1) 1 else log2Ceil(nrTPBeat)
+  val deltaBits = tpmetaOpt.get.deltaBits
+  val nrDelta = tpmetaOpt.get.nrDelta
+}
+
+abstract class TPmetaBundle(implicit val p: Parameters) extends Bundle with HasTPmetaParameters
+abstract class TPmetaModule(implicit val p: Parameters) extends Module with HasTPmetaParameters
 
 class TPmetaIO(implicit p: Parameters) extends TPmetaBundle {
   val req = Flipped(DecoupledIO(new TPmetaReq(hartIdLen, fullAddressBits, offsetBits)))
