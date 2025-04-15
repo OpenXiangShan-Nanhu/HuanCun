@@ -9,8 +9,8 @@ import huancun.debug.{DirectoryLogger, TypeId}
 import huancun.utils._
 import utility.{GTimer, ParallelMax, ParallelPriorityMux}
 import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
-import xs.utils.cacheParam.{MetaData}
-import xs.utils.cacheParam.HCCacheParamsKey
+import xs.utils.cache.{MetaData}
+import xs.utils.cache.HCCacheParamsKey
 
 trait HasClientInfo { this: HasHuanCunParameters =>
   // assume all clients have same params

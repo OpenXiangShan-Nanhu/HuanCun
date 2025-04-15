@@ -7,7 +7,7 @@ import freechips.rocketchip.util.SetAssocLRU
 import huancun._
 import huancun.utils._
 import utility.{ParallelMax, ParallelPriorityMux}
-import xs.utils.cacheParam.MetaData
+import xs.utils.cache.MetaData
 
 // TODO: inclusive may have cache aliase too
 class TagWrite(implicit p: Parameters) extends BaseTagWrite {

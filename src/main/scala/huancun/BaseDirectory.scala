@@ -27,7 +27,7 @@ import freechips.rocketchip.tilelink.TLMessages
 import freechips.rocketchip.util.{Pow2ClockDivider, ReplacementPolicy}
 import huancun.utils.{SRAMTemplate, HoldUnless}
 import utility.{ClockGate, Code}
-import xs.utils.cacheParam.HCCacheParamsKey
+import xs.utils.cache.HCCacheParamsKey
 
 trait BaseDirResult extends HuanCunBundle {
   val idOH = UInt(mshrsAll.W) // which mshr the result should be sent to

@@ -4,7 +4,7 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink.{TLMessages, TLPermissions}
-import xs.utils.cacheParam.MetaData
+import xs.utils.cache.MetaData
 import xs.utils.tl.MemReqSource
 import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
 import huancun.{MSHRRequest, HuanCunModule}

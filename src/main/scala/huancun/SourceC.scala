@@ -24,7 +24,7 @@ import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
 import utility.{MemReqSource, ReqSourceKey}
-import xs.utils.cacheParam.common.{DirtyKey, IsHitKey, PreferCacheKey}
+import xs.utils.cache.common.{DirtyKey, IsHitKey, PreferCacheKey}
 
 class SourceCPipe(implicit p: Parameters) extends HuanCunBundle {
   val task = new SourceCReq

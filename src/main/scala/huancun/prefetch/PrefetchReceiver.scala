@@ -5,7 +5,7 @@ import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
 import utility.{MemReqSource, Pipeline}
-import xs.utils.cacheParam.prefetch._
+import xs.utils.cache.prefetch._
 class PrefetchReceiver()(implicit p: Parameters) extends PrefetchModule {
   val io = IO(new PrefetchIO())
   // just ignore train reqs

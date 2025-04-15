@@ -6,7 +6,7 @@ import chisel3.util._
 import huancun.utils.SRAMTemplate
 import huancun.HasHuanCunParameters
 import xs.utils.tl.MemReqSource
-import xs.utils.cacheParam.prefetch.{BOPParameters}
+import xs.utils.cache.prefetch.{BOPParameters}
 
 trait HasBOPParams extends HasHuanCunParameters {
   val bopParams = prefetchOpt.get.asInstanceOf[BOPParameters]

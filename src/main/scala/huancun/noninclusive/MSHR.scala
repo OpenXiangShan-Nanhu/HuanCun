@@ -8,7 +8,7 @@ import freechips.rocketchip.tilelink.TLPermissions._
 import freechips.rocketchip.tilelink.TLHints._
 import huancun._
 import huancun.utils._
-import xs.utils.cacheParam.MetaData._
+import xs.utils.cache.MetaData._
 import xs.utils.ParallelMax
 import xs.utils.tl.MemReqSource
 

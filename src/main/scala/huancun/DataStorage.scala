@@ -25,7 +25,7 @@ import chisel3.util._
 import huancun.utils.SRAMWrapper
 import utility._
 import xs.utils.perf.{XSPerfAccumulate, XSPerfHistogram, XSPerfMax}
-import xs.utils.cacheParam.HCCacheParamsKey
+import xs.utils.cache.HCCacheParamsKey
 
 class DataStorage(implicit p: Parameters) extends HuanCunModule {
   val io = IO(new Bundle() {

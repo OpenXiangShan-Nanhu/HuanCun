@@ -22,11 +22,11 @@ package huancun
 import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.util._
-import xs.utils.cacheParam.common._
+import xs.utils.cache.common._
 import freechips.rocketchip.tilelink._
 import huancun.utils.HoldUnless
 import utility.MemReqSource
-import xs.utils.cacheParam.common.{DirtyKey, PreferCacheKey}
+import xs.utils.cache.common.{DirtyKey, PreferCacheKey}
 
 class SourceA(edge: TLEdgeOut)(implicit p: Parameters) extends HuanCunModule {
   val io = IO(new Bundle() {

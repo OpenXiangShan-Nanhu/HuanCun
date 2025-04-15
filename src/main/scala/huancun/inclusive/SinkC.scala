@@ -5,8 +5,8 @@ import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
 import huancun._
-import xs.utils.cacheParam.common._
-import xs.utils.cacheParam.common.{DirtyKey, PreferCacheKey}
+import xs.utils.cache.common._
+import xs.utils.cache.common.{DirtyKey, PreferCacheKey}
 
 class SinkC(implicit p: Parameters) extends BaseSinkC {
   /*

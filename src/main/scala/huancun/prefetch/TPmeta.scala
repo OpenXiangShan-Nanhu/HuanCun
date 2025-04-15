@@ -22,7 +22,7 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import huancun.{TPmetaReq, TPmetaResp}
 import utility._
-import xs.utils.cacheParam.prefetch._
+import xs.utils.cache.prefetch._
 import huancun.HasHuanCunParameters
 
 trait HasTPmetaParameters extends HasHuanCunParameters {

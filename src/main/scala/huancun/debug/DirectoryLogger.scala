@@ -4,7 +4,7 @@ import org.chipsalliance.cde.config.Parameters
 import chisel3._
 import chisel3.experimental.{IntParam, StringParam}
 import chisel3.util._
-import xs.utils.cacheParam.HCCacheParamsKey
+import xs.utils.cache.HCCacheParamsKey
 import utility._
 
 object TypeId {

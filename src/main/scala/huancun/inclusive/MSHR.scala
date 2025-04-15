@@ -27,7 +27,7 @@ import freechips.rocketchip.tilelink.TLPermissions._
 import freechips.rocketchip.tilelink._
 import huancun._
 import huancun.prefetch._
-import xs.utils.cacheParam.MetaData._
+import xs.utils.cache.MetaData._
 
 class MSHR()(implicit p: Parameters) extends BaseMSHR[DirResult, DirWrite, TagWrite] {
   val io = IO(new BaseMSHRIO[DirResult, DirWrite, TagWrite] {

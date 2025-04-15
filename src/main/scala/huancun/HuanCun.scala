@@ -29,12 +29,12 @@ import freechips.rocketchip.util.{BundleField, BundleFieldBase, UIntToOH1}
 import org.chipsalliance.diplomacy.bundlebridge.BundleBridgeNexusNode
 import utils.ResetGen
 import utility.{Pipeline, FastArbiter}
-import xs.utils.cacheParam.MetaData
-import xs.utils.cacheParam.prefetch.L3PrefetchReceiverParams
-import xs.utils.cacheParam.prefetch.PrefetchReceiverParams
+import xs.utils.cache.MetaData
+import xs.utils.cache.prefetch.L3PrefetchReceiverParams
+import xs.utils.cache.prefetch.PrefetchReceiverParams
 import huancun.prefetch.{Prefetcher, TPmeta, PrefetchTrain, PrefetchResp}
-import xs.utils.cacheParam.HCCacheParamsKey
-import xs.utils.cacheParam.common._
+import xs.utils.cache.HCCacheParamsKey
+import xs.utils.cache.common._
 trait HasHuanCunParameters {
   val p: Parameters
   val cacheParams = p(HCCacheParamsKey)

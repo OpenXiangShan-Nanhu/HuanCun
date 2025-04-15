@@ -24,7 +24,7 @@ import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tilelink._
 import utility.MemReqSource
-import xs.utils.cacheParam.common.{AliasKey, PreferCacheKey, PrefetchKey}
+import xs.utils.cache.common.{AliasKey, PreferCacheKey, PrefetchKey}
 
 class SinkA(implicit p: Parameters) extends HuanCunModule {
   val io = IO(new Bundle() {

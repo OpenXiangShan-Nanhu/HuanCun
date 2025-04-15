@@ -6,8 +6,8 @@ import chisel3.util._
 import freechips.rocketchip.tilelink._
 import xs.utils.tl.MemReqSource
 import xs.utils.{Pipeline, ValidIODelay, RegNextN}
-import xs.utils.cacheParam.{HCCacheParamsKey}
-import xs.utils.cacheParam.prefetch._
+import xs.utils.cache.{HCCacheParamsKey}
+import xs.utils.cache.prefetch._
 import huancun.HasHuanCunParameters
 trait HasHCPrefetchParameters extends HasHuanCunParameters {
   val inflightEntries = prefetchOpt.get.inflightEntries
