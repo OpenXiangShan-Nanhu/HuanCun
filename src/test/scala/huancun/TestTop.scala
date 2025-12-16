@@ -4,12 +4,14 @@ import _root_.circt.stage.ChiselStage
 import chisel3._
 import chisel3.util._
 import utility._
-import huancun.debug._
 import org.chipsalliance.cde.config._
 import chisel3.stage.ChiselGeneratorAnnotation
 import freechips.rocketchip.util._
 import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.tilelink._
+import xs.utils.cache.{CacheParameters, HCCacheParameters, HCCacheParamsKey}
+import xs.utils.cache.common.{AliasField, DirtyField, IsHitField, IsHitKey, PreferCacheField, PrefetchField}
+import xs.utils.cache.prefetch.{BOPParameters}
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -247,7 +249,7 @@ class TestTop_L2L3()(implicit p: Parameters) extends LazyModule {
       level = 2,
       inclusive = false,
       clientCaches = Seq(CacheParameters(sets = 32, ways = 8, blockGranularity = 5, name = "L2")),
-      prefetch = Some(huancun.prefetch.BOPParameters()),
+      prefetch = Some(BOPParameters()),
       reqField = Seq(PreferCacheField()),
       echoField = Seq(DirtyField()),
       respKey = Seq(IsHitKey)
@@ -390,7 +392,7 @@ class TestTop_FullSys()(implicit p: Parameters) extends LazyModule {
       reqField = Seq(PreferCacheField()),
       echoField = Seq(DirtyField()),
       respKey = Seq(IsHitKey),
-      prefetch = Some(huancun.prefetch.BOPParameters()),
+      prefetch = Some(BOPParameters()),
       sramDepthDiv = 2,
       simulation = true
     )
